@@ -331,12 +331,10 @@ def test_delete_archive_internal():
     arch = InsightsArchive()
     _delete_archive_internal(config, arch)
     assert os.path.exists(arch.tmp_dir)
-    assert os.path.exists(arch.archive_tmp_dir)
 
     config.keep_archive = False
     _delete_archive_internal(config, arch)
     assert not os.path.exists(arch.tmp_dir)
-    assert not os.path.exists(arch.archive_tmp_dir)
 
 
 @patch('insights.client.client._legacy_handle_registration')
