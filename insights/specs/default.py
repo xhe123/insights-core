@@ -18,6 +18,7 @@ from insights.core.context import HostContext
 from insights.core.context import HostArchiveContext
 from insights.core.context import OpenShiftContext
 
+from insights.core import dr
 from insights.core.dr import SkipComponent
 from insights.core.plugins import datasource
 from insights.core.spec_factory import CommandOutputProvider, ContentException, DatasourceProvider, RawFileProvider
@@ -133,6 +134,15 @@ class DefaultSpecs(Specs):
     ps_auxww = simple_command("/bin/ps auxww")
     ps_ef = simple_command("/bin/ps -ef")
     ps_eo = simple_command("/usr/bin/ps -eo pid,ppid,comm")
+
+    @datasource([Specs.ps_alxwww, Specs.ps_aux, Specs.ps_auxcww, Specs.ps_auxww, Specs.ps_ef, Specs.ps_eo])
+    def ps(broker):
+        results = []
+        for d in dr.get_delegate(DefaultSpecs.ps).deps:
+            r = broker.get(d)
+            if r:
+                results.append(r)
+        return results
 
     @datasource(ps_auxww)
     def tomcat_base(broker):

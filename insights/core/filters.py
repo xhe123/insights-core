@@ -103,7 +103,11 @@ def get_filters(component):
         set: The set of filters defined for the datasource
     """
     def inner(c, filters=None):
+        if plugins.is_datasource(c) and not dr.get_delegate(c).filterable:
+            return set()
+
         filters = filters or set()
+
         if not ENABLED:
             return filters
 
