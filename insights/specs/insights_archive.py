@@ -17,6 +17,7 @@ class InsightsArchiveSpecs(Specs):
     azure_instance_type = simple_file("insights_commands/python_-m_insights.tools.cat_--no-header_azure_instance_type")
     bios_uuid = simple_file("insights_commands/dmidecode_-s_system-uuid")
     blkid = simple_file("insights_commands/blkid_-c_.dev.null")
+    blockdev_report = simple_file("insights_commands/blockdev_--report")
     brctl_show = simple_file("insights_commands/brctl_show")
     ceph_df_detail = first_file(["insights_commands/ceph_df_detail_-f_json-pretty", "insights_commands/ceph_df_detail_-f_json"])
     ceph_health_detail = first_file(["insights_commands/ceph_health_detail_-f_json-pretty", "insights_commands/ceph_health_detail_-f_json"])

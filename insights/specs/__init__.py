@@ -29,6 +29,7 @@ class Specs(SpecSet):
     azure_instance_type = RegistryPoint()
     bios_uuid = RegistryPoint()
     blkid = RegistryPoint()
+    blockdev_report = RegistryPoint()
     bond = RegistryPoint(multi_output=True)
     bond_dynamic_lb = RegistryPoint(multi_output=True)
     boot_loader_entries = RegistryPoint(multi_output=True)
